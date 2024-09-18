@@ -1,0 +1,29 @@
+<ff-frame #frame class="content">
+    <h1 ffTranslate="game.menu.score"></h1>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th ffTranslate="game.menu.score.name"></th>
+                <th ffTranslate="game.menu.score"></th>
+                <th ffTranslate="game.menu.score.money"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(p of players(); track p.color; let i = $index) {
+                <tr>
+                    <th class="text-right">{{i + 1}}.</th>
+                    <td class="label" [class]="p.color">{{p.color | playername}}</td>
+                    <td class="text-right">{{p.score}}</td>
+                    <td class="text-right">{{p.money | money}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if(isGameOver()) {
+        <p ffTranslate="game.over"></p>
+    } @else {
+        <p><span ffTranslate="game.menu.score.remaining"></span>: {{remainingScore()}}</p>
+    }
+    <button type="button" [ffFrameButton]="frame" (after-click)="close()" class="button popup delay-1" ffTranslate="close"></button>
+</ff-frame>

@@ -1,0 +1,46 @@
+<ff-frame #frame class="frame">
+    <h1 ffTranslate="menu.newGame"></h1>
+    <form [formGroup]="formGroup">
+        <div class="form-grid-2">
+            <div class="form-group">
+                <label for="menu.newGame.numberOfPlayers" ffTranslate="menu.numberOfPlayers"></label>
+                <select id="menu.newGame.numberOfPlayers" formControlName="numberOfPlayers" class="form-control number">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div></div>
+            @for(p of players; track p.color; let i = $index) {
+                <div [ngClass]="{'hidden': i >= numberOfPlayers}" class="form-group">
+                    <label for="menu.newGame.player{{i}}" class="{{p.color}}">{{'menu.player' | translate}} {{i + 1}}</label>
+                    <select id="menu.newGame.player{{i}}" formControlName="player{{i}}" class="form-control">
+                        <option value="human">{{username()}}</option>
+                        <option value="aiBeginner" ffTranslate="menu.aiBeginner"></option>
+                        <option value="aiAmateur" ffTranslate="menu.aiAmateur"></option>
+                        <option value="aiProfessional" ffTranslate="menu.aiProfessional"></option>
+                    </select>
+                </div>
+            }
+            <div class="form-group">
+                <label for="menu.newGame.initialMoney" ffTranslate="menu.initialMoney"></label>
+                <select id="menu.newGame.initialMoney" formControlName="initialMoney" class="form-control">
+                    <option value="little" ffTranslate="menu.initialMoney.little"></option>
+                    <option value="normal" ffTranslate="menu.initialMoney.normal"></option>
+                    <option value="plenty" ffTranslate="menu.initialMoney.plenty"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="menu.newGame.initialBuildings" ffTranslate="menu.initialBuildings"></label>
+                <select id="menu.newGame.initialBuildings" formControlName="initialBuildings" class="form-control number">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>    
+            </div>
+        </div>
+    </form>
+    <div class="button-list">
+        <button type="button" [disabled]="!canStart" [ffFrameButton]="frame" (after-click)="start()" ffTranslate="menu.startGame" class="button popup delay-1"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="cancel()" ffTranslate="menu.cancel" class="button popup delay-2"></button>
+    </div>
+</ff-frame>

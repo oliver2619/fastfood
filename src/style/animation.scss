@@ -1,0 +1,115 @@
+$animation-duration-short: 150ms;
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popdown {
+    from {
+        opacity: 1;
+        transform: translateY(0%) scale(1, 1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(50%) scale(0, 0);
+    }
+}
+
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform:  translateY(50%) scale(0, 0);
+    }
+
+    50% {
+        transform: translateY(0%) scale(1.4, 1.2);
+    }
+
+    75% {
+        transform:  translateY(0%) scale(0.95, 0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%) scale(1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@mixin fadein {
+    animation-name: fadein;
+    animation-direction: normal;
+    animation-duration: 1200ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+}
+
+@mixin popdown {
+    animation-name: popdown;
+    animation-direction: normal;
+    animation-duration: $animation-duration-short;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+}
+
+@mixin popup {
+    animation-name: popup;
+    animation-direction: normal;
+    animation-duration: $animation-duration-short;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+}
+
+@mixin pulse {
+    animation-name: pulse;
+    animation-direction: normal;
+    animation-duration: 1200ms;
+    animation-iteration-count: infinite;
+}
+
+.popup {
+    @include popup;
+
+    &.delay-1 {
+        animation-delay: $animation-duration-short;
+    }
+
+    &.delay-2 {
+        animation-delay: $animation-duration-short * 1.5;
+    }
+
+    &.delay-3 {
+        animation-delay: $animation-duration-short * 2;
+    }
+
+    &.delay-4 {
+        animation-delay: $animation-duration-short * 2.5;
+    }
+
+    &.delay-5 {
+        animation-delay: $animation-duration-short * 3;
+    }
+}
+
+.pulse {
+    @include pulse;
+}

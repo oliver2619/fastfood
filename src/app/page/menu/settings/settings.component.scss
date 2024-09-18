@@ -1,0 +1,5 @@
+@import '../../../../style/menu.scss';
+
+:host {
+    @include menu;
+}

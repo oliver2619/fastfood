@@ -1,0 +1,13 @@
+@import './color.scss';
+
+@mixin img-icon {
+    filter: drop-shadow(0 0 2px $shadow-color-img) drop-shadow(2px 2px 6px $shadow-color-img)
+}
+
+img.icon {
+    @include img-icon;
+
+    button.large & {
+        margin: 0.3rem;
+    }
+}

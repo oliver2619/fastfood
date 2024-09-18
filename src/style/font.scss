@@ -1,0 +1,23 @@
+@font-face {
+	font-family: "lobster";
+	src: url("../../public/fonts/LobsterTwo-Regular.ttf") format("truetype");
+}
+
+$font-family: "lobster";
+
+@mixin font($size) {
+    font-family: lobster;
+
+    @media (max-width: 600px) {
+        font-size: 5vw * $size;
+    }
+
+    @media (min-width: 601px) {
+        font-size: 30px * $size;
+    }
+}
+
+@mixin text-with-shadow {
+    text-shadow: 0 0 1px rgba($color, 0.5);
+    color: $color;
+}

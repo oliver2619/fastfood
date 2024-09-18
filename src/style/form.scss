@@ -1,0 +1,28 @@
+@import "./spacing.scss";
+
+@mixin form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: $spacing-form;
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+    }
+
+    .form-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-gap: $spacing-form $spacing-form;
+        justify-items: stretch;
+        align-items: start;
+    }
+}
+
+form,
+.form {
+    @include form;
+}

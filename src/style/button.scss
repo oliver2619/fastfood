@@ -1,0 +1,53 @@
+@import './border.scss';
+@import './color.scss';
+@import './font.scss';
+@import './opacity.scss';
+@import './spacing.scss';
+
+@mixin button {
+    @include font(1);
+	@include text-with-shadow;
+    @include border-button;
+	cursor: pointer;
+	padding: $spacing-button $spacing-button * 1.25;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	column-gap: $spacing-button;
+	
+    background-color: $background-color-button;
+	color: $color-button;
+	
+	&[disabled] {
+		cursor: default;
+		opacity: $opacity-disabled;
+	}
+}
+
+@mixin button-list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: $spacing-form;
+	align-self: center;
+
+	&.vertical {
+		flex-direction: column;
+		align-items: stretch;
+		row-gap: $spacing-form;
+	}
+
+	&.stretch {
+		justify-content: space-between;
+		align-self: stretch;
+	}
+}
+
+button.button {
+    @include button;
+}
+
+.button-list {
+	@include button-list;
+}

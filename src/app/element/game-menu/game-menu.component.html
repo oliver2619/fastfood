@@ -1,0 +1,10 @@
+<ff-frame #frame class="content">
+    <h1 ffTranslate="game.menu"></h1>
+    <div class="button-list vertical">
+        <button type="button" [ffFrameButton]="frame" (after-click)="score()" class="button popup delay-1" ffTranslate="game.menu.score"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="statistics()" class="button popup delay-2" ffTranslate="game.menu.statistics"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="settings()" class="button popup delay-3" ffTranslate="menu.settings"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="continue()" class="button popup delay-4" ffTranslate="game.menu.continue"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="exit()" class="button popup delay-5" ffTranslate="game.menu.exit"></button>
+    </div>
+</ff-frame>

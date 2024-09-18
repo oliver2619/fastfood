@@ -1,0 +1,42 @@
+@import './z-index.scss';
+
+$game-menu-spacing: 1rem;
+
+@mixin game-menu {
+    z-index: $z-index-game-overlay;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    row-gap: $game-menu-spacing;
+    pointer-events: none;
+
+    &.top {
+        top: $game-menu-spacing;
+    }
+
+    &.bottom {
+        bottom: $game-menu-spacing;
+    }
+
+    &.left {
+        left: $game-menu-spacing;
+        align-items: flex-start;
+    }
+
+    &.center {
+        align-items: center;
+    }
+
+    &.right {
+        right: $game-menu-spacing;
+        align-items: flex-end;
+    }
+
+    button {
+        pointer-events: visible;
+    }
+}
+
+.game-menu {
+    @include game-menu;
+}

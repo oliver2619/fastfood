@@ -1,0 +1,50 @@
+<div class="content">
+    <h1 ffTranslate="game.harvest"></h1>
+    <div class="grid-3">
+        <label class="number">{{farm()}}&nbsp;&times;</label>
+        <div class="input-group">
+            <button type="button" (click)="harvestSteak()" [disabled]="!farmEnabled()" class="button large">
+                <img src="images/steak.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="steak()" min="0" max="99" class="form-control">
+        </div>
+        <div class="input-group">
+            <button type="button" (click)="harvestNugget()" [disabled]="!farmEnabled()" class="button large">
+                <img src="images/nugget.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="nugget()" min="0" max="99" class="form-control">
+        </div>
+        <label class="number">{{field()}}&nbsp;&times;</label>
+        <div class="input-group">
+            <button type="button" (click)="harvestBread()" [disabled]="!fieldEnabled()" class="button large">
+                <img src="images/bread.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="bread()" min="0" max="99" class="form-control">
+        </div>
+        <div class="input-group">
+            <button type="button" (click)="harvestPotato()" [disabled]="!fieldEnabled()" class="button large">
+                <img src="images/potato.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="potato()" min="0" max="99" class="form-control">
+        </div>
+        <label class="number">{{plantation()}}&nbsp;&times;</label>
+        <div class="input-group">
+            <button type="button" (click)="harvestCola()" [disabled]="!plantationEnabled()" class="button large">
+                <img src="images/cola.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="cola()" min="0" max="99" class="form-control">
+        </div>
+        <div class="input-group">
+            <button type="button" (click)="harvestCoffee()" [disabled]="!plantationEnabled()" class="button large">
+                <img src="images/coffee.png" class="icon">
+            </button>
+            <input type="number" readonly="readonly" [value]="coffee()" min="0" max="99" class="form-control">
+        </div>
+    </div>
+    <div class="grid-2">
+        <label class="label-frame">
+            <img src="images/users_3.png" class="icon">
+        </label>
+        <label>{{customers()}}&nbsp;&times;</label>
+    </div>
+</div>

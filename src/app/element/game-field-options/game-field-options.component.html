@@ -1,0 +1,15 @@
+<div class="content">
+    <h1>{{title()}}</h1>
+    @if(hasDisaster()) {
+        <div ffTranslate="game.field.disasterActive"></div>
+    }
+    <div class="button-list">
+        @if(canPutDisaster()) {
+            <button type="button" (click)="putDisaster()" class="button" ffTranslate="game.field.putDisaster"></button>
+        }
+        @if(canRemoveDisaster()) {
+            <button type="button" (click)="removeDisaster()" class="button" ffTranslate="game.field.removeDisaster"></button>
+        }
+        <button type="button" (click)="cancel()" class="button" ffTranslate="menu.cancel"></button>
+    </div>
+</div>

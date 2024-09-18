@@ -1,0 +1,36 @@
+@import '../../../style/border.scss';
+@import '../../../style/color.scss';
+
+@mixin transition-left {
+    transition-property: left;
+    transition-duration: 100ms;
+    transition-timing-function: ease-in-out;
+}
+
+:host {
+    @include border-button;
+    cursor: pointer;
+    width: 64px;
+    display: inline-flex;
+    background-color: $background-color-button;
+}
+
+div {
+    @include transition-left;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    left: 0px;
+    border-radius: $border-radius-button;
+    background-color: $color-button;
+
+    &.checked {
+        @include transition-left;
+        left: 32px;
+    }
+}
+
+input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+}

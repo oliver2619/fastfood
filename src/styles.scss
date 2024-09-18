@@ -1,0 +1,51 @@
+@import 'style/animation.scss';
+@import 'style/button.scss';
+@import 'style/color.scss';
+@import 'style/font.scss';
+@import 'style/form.scss';
+@import 'style/frame.scss';
+@import 'style/game-menu.scss';
+@import 'style/grid.scss';
+@import 'style/img.scss';
+@import 'style/input.scss';
+@import 'style/label.scss';
+@import 'style/table.scss';
+
+html {
+    height: 100%;
+}
+
+body {
+    @include font(1);
+	user-select: none;
+    height: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+    color: $color;
+    background-color: $background-color;
+}
+
+h1 {
+    @include font(2);
+	margin: 0;
+	font-weight: normal;
+}
+
+small {
+	@include font(0.8);
+}
+
+.right {
+	align-self: flex-end;
+}
+
+.text-right {
+	text-align: end;
+}
+
+.hidden {
+    visibility: hidden;
+}

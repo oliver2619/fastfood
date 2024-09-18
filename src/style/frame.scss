@@ -1,0 +1,25 @@
+@import './color.scss';
+@import './border.scss';
+@import './animation.scss';
+
+@mixin frame {
+    @include border-frame;
+	padding: $spacing-frame $spacing-frame * 1.25;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: $spacing-frame;
+    background-color: $background-color-frame;
+
+    &.popup {
+        @include popup;
+    }
+
+    &.popdown {
+        @include popdown;
+    }
+}
+
+.frame {
+    @include frame;
+}

@@ -1,0 +1,8 @@
+<div class="game-menu top right">
+    <button type="button" routerLink="menu" class="button popup" ffTranslate="game.menu"></button>
+</div>
+<div class="game-menu bottom right">
+    @if(canNext()) {
+        <button type="button" (click)="next()" class="button popup delay-1" ffTranslate="game.next"></button>
+    }
+</div>

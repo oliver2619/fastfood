@@ -1,0 +1,13 @@
+<label class="label-frame" [ngClass]="colorOnTurn()">{{colorOnTurn() | playername}}</label>
+@if(hasUnplacedBuilding()) {
+    <label class="label-frame pulse" ffTranslate="game.action.raiseBuilding"></label>
+}
+@if(hasDisaster()) {
+    <label class="label-frame pulse" ffTranslate="game.action.putDisaster"></label>
+}
+@if(needsToSell()) {
+    <label class="label-frame pulse" ffTranslate="game.action.sellBuilding"></label>
+}
+@if(isOver()) {
+    <label class="label-frame pulse" ffTranslate="game.over"></label>
+}

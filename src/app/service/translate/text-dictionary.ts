@@ -1,0 +1,1 @@
+export type TextDictionary = {[key: string]: string};

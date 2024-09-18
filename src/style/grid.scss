@@ -1,0 +1,33 @@
+@mixin grid($columns) {
+    display: grid;
+    grid-template-columns: repeat($columns, auto);
+    row-gap: $game-menu-spacing * 0.5;
+    column-gap: $game-menu-spacing * 0.5;
+    align-items: center;
+    justify-items: start;
+
+    .number {
+        justify-self: end;
+    }
+
+    .stretch {
+        justify-self: stretch;
+    }
+
+    .right {
+        justify-self: end;
+    }
+}
+
+.grid-2 {
+    @include grid(2);
+}
+
+.grid-3 {
+    @include grid(3);
+}
+
+.grid-4 {
+    @include grid(4);
+}
+

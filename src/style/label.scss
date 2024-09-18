@@ -1,0 +1,50 @@
+@import './font.scss';
+@import './border.scss';
+
+@mixin label-color($color) {
+	text-shadow: 0 0 1px black, 0 0 2px black, 0 0 5px black;
+    color: $color;
+    font-weight: bold;
+}
+
+@mixin label-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: $spacing-label-frame;
+}
+
+label, .label {
+    @include text-with-shadow;
+    @include label-display;
+
+    &.red {
+        @include label-color($color-player-red);
+    }
+
+    &.yellow {
+        @include label-color($color-player-yellow);
+    }
+
+    &.green {
+        @include label-color($color-player-green);
+    }
+
+    &.blue {
+        @include label-color($color-player-blue);
+    }
+
+    &.white {
+        @include label-color(#ffffff);
+    }
+}
+
+.label-frame {
+    @include border-label-frame;
+    @include text-with-shadow;
+    @include label-display;
+
+    margin: $spacing-label-frame;
+	padding: $spacing-label-frame;
+    background-color: $background-color-label-frame;
+}

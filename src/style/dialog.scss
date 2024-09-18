@@ -1,0 +1,62 @@
+@import "./color.scss";
+@import "./border.scss";
+@import "./z-index.scss";
+@import "./animation.scss";
+
+@mixin dialog {
+    position: fixed;
+    z-index: $z-index-dialog - 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    &.hidden {
+        visibility: hidden;
+    }
+
+    .content {
+        @include border-frame;
+        position: relative;
+        z-index: $z-index-dialog;
+        padding: $spacing-frame $spacing-frame * 1.25;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: $spacing-frame;
+        background-color: rgba($background-color-frame, 0.8);
+
+        &.popup {
+            @include popup;
+        }
+
+        &.popdown {
+            @include popdown;
+        }
+
+        .columns-section {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            column-gap: $spacing-frame;
+
+            &.center-y {
+                align-items: center;
+            }
+
+            &.stretch {
+                align-self: stretch;
+                justify-content: space-between;
+            }
+        }
+
+        & > .stretch {
+            align-self: stretch;
+        }
+    }
+}

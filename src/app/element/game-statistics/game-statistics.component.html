@@ -1,0 +1,41 @@
+<ff-frame #frame class="content">
+    <h1 ffTranslate="game.menu.statistics"></h1>
+    <div class="columns-section stretch">
+        <div class="grid-2">
+            <label class="label-frame stretch">
+                <img src="images/steak.png" class="icon">
+                <img src="images/nugget.png" class="icon">
+            </label>
+            <label class="number">{{farm() | number:'0.1-1'}}</label>
+            <label class="label-frame stretch">
+                <img src="images/bread.png" class="icon">
+                <img src="images/potato.png" class="icon">
+            </label>
+            <label class="number">{{field() | number:'0.1-1'}}</label>
+            <label class="label-frame stretch">
+                <img src="images/cola.png" class="icon">
+                <img src="images/coffee.png" class="icon">
+            </label>
+            <label class="number">{{plantation() | number:'0.1-1'}}</label>
+        </div>
+        <div class="grid-2">
+            <label class="label-frame stretch">
+                <img src="images/flask.png" class="icon">
+            </label>
+            <label class="number">{{industry() | number:'0.1-1'}}</label>
+            <label class="label-frame stretch">
+                <img src="images/users_3.png" class="icon">
+            </label>
+            <label class="number">{{customers() | number:'0.1-1'}}</label>
+            <label class="label-frame stretch">
+                <img src="images/coins_in_hand.png" class="icon">
+            </label>
+            <label class="number">{{turnover() | money}}</label>
+        </div>
+    </div>
+    <form [formGroup]="formGroup" class="grid-2 stretch">
+        <label for="game.menu.statistics.withDisaster" ffTranslate="game.menu.statistics.withDisaster"></label>
+        <ff-checkbox [control]="formGroup.controls['withDisaster']" checkbox-id="game.menu.statistics.withDisaster" class="right"></ff-checkbox>
+    </form>
+    <button type="button" [ffFrameButton]="frame" (after-click)="close()" class="button popup delay-1" ffTranslate="close"></button>
+</ff-frame>

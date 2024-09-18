@@ -1,0 +1,36 @@
+<div class="content">
+    <h1 ffTranslate="game.building"></h1>
+    <div class="grid-2">
+        @if(canBuy()) {
+            <div ffTranslate="game.building.buy"></div>
+            <div class="number">{{buyCosts() | money}}</div>
+        }
+        @if(canUpgrade()) {
+            <div ffTranslate="game.building.upgrade"></div>
+            <div class="number">{{buyCosts() | money}}</div>
+        }
+        @if(canSell()) {
+            <div ffTranslate="game.building.sell"></div>
+            <div class="number">{{sellCosts() | money}}</div>
+        }
+        @if(canUpgrade() || canBuy() || canPut()) {
+            <div ffTranslate="game.building.turnoverBonus"></div>
+            <div class="number">{{turnover() | money:1}}</div>
+        }
+    </div>
+    <div class="button-list">
+        @if(canPut()) {
+            <button type="button" (click)="buy()" class="button popup delay-1" ffTranslate="game.building.put"></button>
+        }
+        @if(canBuy()) {
+            <button type="button" (click)="buy()" class="button popup delay-1" ffTranslate="game.building.buy"></button>
+        }
+        @if(canUpgrade()) {
+            <button type="button" (click)="buy()" class="button popup delay-1" ffTranslate="game.building.upgrade"></button>
+        }
+        @if(canSell()) {
+            <button type="button" (click)="sell()" class="button popup delay-2" ffTranslate="game.building.sell"></button>
+        }
+        <button type="button" (click)="cancel()" class="button popup delay-3" ffTranslate="menu.cancel"></button>
+    </div>
+</div>

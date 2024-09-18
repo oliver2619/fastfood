@@ -1,0 +1,7 @@
+@mixin menu {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    flex-grow: 1;
+}

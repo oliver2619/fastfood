@@ -1,0 +1,9 @@
+<ff-frame #frame class="frame">
+    <h1>Fastfood</h1>
+    <div class="button-list vertical">
+        <button type="button" [ffFrameButton]="frame" (after-click)="newGame()" ffTranslate="menu.newGame" class="button popup delay-1"></button>
+        <button type="button" [disabled]="!canContinueGame" [ffFrameButton]="frame" (after-click)="continueGame()" ffTranslate="menu.continueGame" class="button popup delay-2"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="settings()" ffTranslate="menu.settings" class="button popup delay-3"></button>
+    </div>
+    <small class="right">{{'menu.version' | translate}} {{version}}</small>
+</ff-frame>

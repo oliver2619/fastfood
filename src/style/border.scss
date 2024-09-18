@@ -1,0 +1,48 @@
+@import './color.scss';
+@import './spacing.scss';
+
+$border-radius-button: $spacing-button * 0.5;
+
+@mixin box-shadow-button($color) {
+	box-shadow: 0 0 2px $color, inset 0 0 2px $color;
+}
+
+@mixin box-shadow-input($color) {
+	box-shadow: 0 0 2px $color, inset 0 0 4px $color;
+}
+
+@mixin border-button {
+	@include box-shadow-button($border-color-button);
+	outline: none;
+    border: 1px solid $border-color-button;
+	border-radius: $border-radius-button;
+
+	&:focus, &:hover, &:active, &.active {
+        border-color: $border-color-button-focus;
+		@include box-shadow-input($border-color-button-focus);
+	}
+}
+
+@mixin border-input {
+	@include box-shadow-input($border-color-input);
+	outline: none;
+	border: 1px solid $border-color-input;
+	border-radius: $spacing-input * 0.5;
+
+    &:focus {
+        border-color: $border-color-input-focus;
+		@include box-shadow-input($border-color-input-focus);
+    }
+}
+
+@mixin border-frame {
+	border: 2px solid $border-color-frame;
+	border-radius: $spacing-frame;
+	box-shadow: 0 0 4px $border-color-frame, inset 0 0 4px $border-color-frame;
+}
+
+@mixin border-label-frame {
+	border: 1px solid $border-color-label-frame;
+	border-radius: $spacing-label-frame * 0.5;
+	box-shadow: 0 0 2px $border-color-label-frame, inset 0 0 1px $border-color-label-frame;
+}

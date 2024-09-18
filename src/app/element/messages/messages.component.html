@@ -1,0 +1,3 @@
+@for(el of elements(); track el.id) {
+    <div (click)="close(el.id)" class="element" [ngClass]="{error: el.type == 'error', info: el.type == 'info'}">{{el.message}}</div>
+}

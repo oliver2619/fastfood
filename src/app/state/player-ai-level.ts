@@ -1,0 +1,1 @@
+export type PlayerAiLevel = 'human' | 'aiBeginner' | 'aiAmateur' | 'aiProfessional';
