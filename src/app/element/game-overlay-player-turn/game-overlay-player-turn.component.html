@@ -1,4 +1,4 @@
-<label class="label-frame" [ngClass]="colorOnTurn()">{{colorOnTurn() | playername}}</label>
+<label (animationend)="onEndAnimation()" class="label-frame {{colorOnTurn()}}" [ngClass]="{flipin: flipIn(), flipout: !flipIn()}">{{colorOnTurn() | playername}}</label>
 @if(hasUnplacedBuilding()) {
     <label class="label-frame pulse" ffTranslate="game.action.raiseBuilding"></label>
 }

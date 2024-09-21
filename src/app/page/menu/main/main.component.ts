@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateDirective } from '../../../element/translate.directive';
 import { version } from '../../../../../package.json';
-import { TranslatePipe } from "../../../element/translate.pipe";
 import { GameService } from '../../../service/game.service';
 import { CommonModule } from '@angular/common';
 import { FrameComponent } from "../../../element/frame/frame.component";
 import { FrameButtonDirective } from '../../../element/frame-button.directive';
+import { TranslatePipe } from '../../../pipe/translate.pipe';
 
 @Component({
   selector: 'ff-main',

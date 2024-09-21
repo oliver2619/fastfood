@@ -1,17 +1,17 @@
-<div class="content">
+<ff-frame class="content">
     <div class="columns-section center-y stretch">
         <h1 ffTranslate="game.sales"></h1>
-        <label><img src="images/users_3.png" class="icon">&nbsp;{{customers()}}</label>
+        <label class="popup delay-5"><img src="images/users_3.png" class="icon">&nbsp;{{customers()}}</label>
     </div>
     <div class="grid-3">
-        @for(p of products; track p.type) {
+        @for(p of products; track p.type; let i = $index) {
             <label>{{available()[p.type]}}&nbsp;&times;</label>
             <label>{{p.price | money}}</label>
-            <button type="button" (click)="sell(p.type)" [disabled]="!canSell()[p.type]" class="button stretch large">
+            <button type="button" (click)="sell(p.type)" [disabled]="!canSell()[p.type]" class="button stretch large popup delay-{{(i % 4) + 1}}">
                 @for(s of p.soils; track s) {
                     <img [src]="s" class="icon">
                 }
             </button>
         }
     </div>
-</div>
+</ff-frame>

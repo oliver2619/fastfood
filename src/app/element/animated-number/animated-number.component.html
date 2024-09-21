@@ -1,0 +1,5 @@
+@if(money) {
+    {{ current() | money:digits }}
+} @else {
+    {{ current() | number:'1.' + digits + '-' + digits}}
+}

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../selector/game-selector';
-import { MoneyPipe } from "../money.pipe";
+import { AnimatedNumberComponent } from "../animated-number/animated-number.component";
 
 @Component({
     selector: 'ff-game-overlay-soils',
@@ -10,7 +10,7 @@ import { MoneyPipe } from "../money.pipe";
     templateUrl: './game-overlay-soils.component.html',
     styleUrl: './game-overlay-soils.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, MoneyPipe]
+    imports: [CommonModule, AnimatedNumberComponent]
 })
 export class GameOverlaySoilsComponent {
 

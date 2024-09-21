@@ -21,17 +21,25 @@ export class GameOverlayPlayerTurnComponent {
   private readonly userOnTurn = signal(false);
 
   readonly colorOnTurn = signal('');
+  readonly flipIn = signal(true);
   readonly hasUnplacedBuilding = signal(true);
   readonly hasDisaster = signal(false);
   readonly isOver = signal(false);
   readonly needsToSell = computed(() => this.outOfMoney() && this.gamePhaseBuild() && this.userOnTurn());
+
+  private nextPlayerOnTurn = '';
 
   constructor(store: Store) {
     store.select(selectUserOnTurn).subscribe({
       next: f => this.userOnTurn.set(f)
     })
     store.select(selectPlayerOnTurn).subscribe({
-      next: player => this.colorOnTurn.set(player.color)
+      next: player => {
+        this.nextPlayerOnTurn = player.color;
+        if (this.colorOnTurn() !== this.nextPlayerOnTurn && this.flipIn()) {
+          this.flipIn.set(false);
+        }
+      }
     });
     store.select(selectGamePhase).subscribe({
       next: phase => {
@@ -44,5 +52,12 @@ export class GameOverlayPlayerTurnComponent {
     store.select(selectUser).subscribe({
       next: player => this.outOfMoney.set(player.money < player.costsPerRound)
     });
+  }
+
+  onEndAnimation() {
+    if (!this.flipIn()) {
+      this.colorOnTurn.set(this.nextPlayerOnTurn);
+      this.flipIn.set(true);
+    }
   }
 }

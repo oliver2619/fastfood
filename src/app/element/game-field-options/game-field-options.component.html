@@ -1,15 +1,15 @@
-<div class="content">
+<ff-frame #frame class="content">
     <h1>{{title()}}</h1>
     @if(hasDisaster()) {
         <div ffTranslate="game.field.disasterActive"></div>
     }
     <div class="button-list">
         @if(canPutDisaster()) {
-            <button type="button" (click)="putDisaster()" class="button" ffTranslate="game.field.putDisaster"></button>
+            <button type="button" [ffFrameButton]="frame" (after-click)="putDisaster()" class="button popup delay-1" ffTranslate="game.field.putDisaster"></button>
         }
         @if(canRemoveDisaster()) {
-            <button type="button" (click)="removeDisaster()" class="button" ffTranslate="game.field.removeDisaster"></button>
+            <button type="button" [ffFrameButton]="frame" (after-click)="removeDisaster()" class="button popup delay-1" ffTranslate="game.field.removeDisaster"></button>
         }
-        <button type="button" (click)="cancel()" class="button" ffTranslate="menu.cancel"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="cancel()" class="button popup delay-2" ffTranslate="menu.cancel"></button>
     </div>
-</div>
+</ff-frame>

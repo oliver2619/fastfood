@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { gameActionGroup } from '../../action/game-action-group';
-import { GamePhase } from '../../model/game-phase';
 import { Product } from '../../model/product';
 import { ProductType } from '../../model/product-type';
 import { SoilType } from '../../model/soil-type';
 import { Soils } from '../../model/soils';
-import { selectGamePhase, selectUserSoils } from '../../selector/game-selector';
-import { MoneyPipe } from '../money.pipe';
+import { selectUserSoils } from '../../selector/game-selector';
+import { MoneyPipe } from '../../pipe/money.pipe';
 import { TranslateDirective } from '../translate.directive';
+import { FrameComponent } from "../frame/frame.component";
 
 interface Element {
   readonly type: ProductType;
@@ -19,18 +19,16 @@ interface Element {
 @Component({
   selector: 'ff-game-sell',
   standalone: true,
-  imports: [TranslateDirective, MoneyPipe],
   templateUrl: './game-sell.component.html',
   styleUrl: './game-sell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.hidden]': '!visible()'
-  }
+  imports: [TranslateDirective, MoneyPipe, FrameComponent]
 })
 export class GameSellComponent {
 
-  readonly visible = signal(false);
-  
+  @ViewChild(FrameComponent)
+  frameComponent: FrameComponent | undefined;
+
   readonly products: Element[] = Product.ALL.map(it => ({
     price: it.sellCosts,
     soils: it.soilsArray.map(s => `images/${SoilType[s].toLocaleLowerCase()}.png`),
@@ -49,12 +47,13 @@ export class GameSellComponent {
         this.available.set(Product.ALL.map(it => Math.min(it.getSellAmount(s), soils.harvests.city)));
       }
     });
-    store.select(selectGamePhase).subscribe({
-      next: phase => this.visible.set(phase === GamePhase.SELL)
-    });
   }
 
   sell(productType: ProductType) {
-    this.store.dispatch(gameActionGroup.sell({productType}));
+    this.store.dispatch(gameActionGroup.sell({ productType }));
+  }
+
+  fadeout(): Promise<void> {
+    return this.frameComponent?.close() ?? Promise.resolve();
   }
 }

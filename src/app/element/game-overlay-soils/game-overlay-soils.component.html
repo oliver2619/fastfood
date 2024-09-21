@@ -1,6 +1,6 @@
 <div class="grid-2">
     <img src="images/coins.png" class="icon">
-    <label class="white">{{money() | money}}</label>
+    <label class="white"><ff-animated-number [value]="money()" [money]="true"></ff-animated-number></label>
     <img src="images/coins_in_hand.png" class="icon">
-    <label class="white number">{{turnover() | money}}</label>
+    <label class="white number"><ff-animated-number [value]="turnover()" [money]="true"></ff-animated-number></label>
 </div>

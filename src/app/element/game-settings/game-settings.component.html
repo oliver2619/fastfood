@@ -3,14 +3,14 @@
     <form [formGroup]="formGroup">
         <div class="form-group">
             <label for="game.settings.animationspeed" ffTranslate="menu.settings.animationSpeed"></label>
-            <select id="game.settings.animationspeed" formControlName="animationSpeed" class="form-control">
+            <select id="game.settings.animationspeed" formControlName="animationSpeed" class="form-control popup delay-1">
                 <option value="slow" ffTranslate="menu.settings.animationSpeed.slow"></option>
                 <option value="fast" ffTranslate="menu.settings.animationSpeed.fast"></option>
             </select>
         </div>
     </form>
     <div class="button-list">
-        <button type="button" [ffFrameButton]="frame" (after-click)="save()" class="button popup delay-1" ffTranslate="menu.save"></button>
-        <button type="button" [ffFrameButton]="frame" (after-click)="cancel()" class="button popup delay-2" ffTranslate="menu.cancel"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="save()" class="button popup delay-2" ffTranslate="menu.save"></button>
+        <button type="button" [ffFrameButton]="frame" (after-click)="cancel()" class="button popup delay-3" ffTranslate="menu.cancel"></button>
     </div>
 </ff-frame>

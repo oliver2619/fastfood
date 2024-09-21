@@ -13,17 +13,17 @@
             @for(p of players(); track p.color; let i = $index) {
                 <tr>
                     <th class="text-right">{{i + 1}}.</th>
-                    <td class="label" [class]="p.color">{{p.color | playername}}</td>
-                    <td class="text-right">{{p.score}}</td>
-                    <td class="text-right">{{p.money | money}}</td>
+                    <td class="label flipin delay-{{i + 1}} {{p.color}}">{{p.color | playername}}</td>
+                    <td class="text-right"><ff-animated-number [value]="p.score"></ff-animated-number></td>
+                    <td class="text-right"><ff-animated-number [value]="p.money" [money]="true"></ff-animated-number></td>
                 </tr>
             }
         </tbody>
     </table>
     @if(isGameOver()) {
-        <p ffTranslate="game.over"></p>
+        <p ffTranslate="game.over" class="flipin delay-5"></p>
     } @else {
-        <p><span ffTranslate="game.menu.score.remaining"></span>: {{remainingScore()}}</p>
+        <p><span ffTranslate="game.menu.score.remaining"></span>: <ff-animated-number [value]="remainingScore()"></ff-animated-number></p>
     }
     <button type="button" [ffFrameButton]="frame" (after-click)="close()" class="button popup delay-1" ffTranslate="close"></button>
 </ff-frame>

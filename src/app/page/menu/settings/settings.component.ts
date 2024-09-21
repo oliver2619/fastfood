@@ -4,11 +4,11 @@ import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { settingsActionGroup } from '../../../action/settings-action-group';
 import { TranslateDirective } from '../../../element/translate.directive';
-import { selectSettings, selectUsername } from '../../../selector/settings-selector';
-import { TranslatePipe } from "../../../element/translate.pipe";
+import { selectSettings } from '../../../selector/settings-selector';
 import { AnimationSpeed } from '../../../state/animation-speed';
 import { FrameComponent } from "../../../element/frame/frame.component";
 import { FrameButtonDirective } from '../../../element/frame-button.directive';
+import { TranslatePipe } from '../../../pipe/translate.pipe';
 
 interface SettingsComponentValue {
   username: string;

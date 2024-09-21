@@ -6,11 +6,12 @@ import { Store } from '@ngrx/store';
 import { settingsActionGroup } from '../../action/settings-action-group';
 import { selectUserStatistics } from '../../selector/game-selector';
 import { selectShowSettingsWithDisaster } from '../../selector/settings-selector';
-import { MoneyPipe } from '../money.pipe';
 import { TranslateDirective } from '../translate.directive';
 import { CheckboxComponent } from "../../atom/checkbox/checkbox.component";
 import { FrameComponent } from "../frame/frame.component";
 import { FrameButtonDirective } from '../frame-button.directive';
+import { AnimatedNumberComponent } from '../animated-number/animated-number.component';
+import { MoneyPipe } from '../../pipe/money.pipe';
 
 interface GameStatisticsComponentValue {
   withDisaster: boolean;
@@ -22,7 +23,7 @@ interface GameStatisticsComponentValue {
     templateUrl: './game-statistics.component.html',
     styleUrl: './game-statistics.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterModule, FormsModule, ReactiveFormsModule, DecimalPipe, MoneyPipe, TranslateDirective, CheckboxComponent, FrameComponent, FrameButtonDirective]
+    imports: [RouterModule, FormsModule, ReactiveFormsModule, DecimalPipe, MoneyPipe, TranslateDirective, CheckboxComponent, FrameComponent, FrameButtonDirective, AnimatedNumberComponent]
 })
 export class GameStatisticsComponent {
 

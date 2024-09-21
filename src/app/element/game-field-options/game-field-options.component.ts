@@ -3,25 +3,22 @@ import { Store } from '@ngrx/store';
 import { gameActionGroup } from '../../action/game-action-group';
 import { FieldType } from '../../model/field-type';
 import { selectUserOnTurn } from '../../selector/game-selector';
-import { selectSelectedField } from '../../selector/selection-selector';
 import { TranslateService } from '../../service/translate/translate.service';
 import { SelectedFieldState } from '../../state/selection-state';
 import { TranslateDirective } from '../translate.directive';
+import { FrameComponent } from "../frame/frame.component";
+import { FrameButtonDirective } from '../frame-button.directive';
 
 @Component({
-  selector: 'ff-game-field-options',
-  standalone: true,
-  imports: [TranslateDirective],
-  templateUrl: './game-field-options.component.html',
-  styleUrl: './game-field-options.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.hidden]': '!visible()'
-  }
+    selector: 'ff-game-field-options',
+    standalone: true,
+    templateUrl: './game-field-options.component.html',
+    styleUrl: './game-field-options.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [TranslateDirective, FrameComponent, FrameButtonDirective]
 })
 export class GameFieldOptionsComponent {
 
-  readonly visible = signal(false);
   readonly canRemoveDisaster = signal(false);
   readonly hasDisaster = signal(false);
   readonly title = signal('');
@@ -35,15 +32,6 @@ export class GameFieldOptionsComponent {
   readonly canPutDisaster = computed(() => this.putDisasterEnabled() && this.userOnTurn());
 
   constructor(private readonly store: Store, private readonly translationService: TranslateService) {
-    store.select(selectSelectedField).subscribe({
-      next: f => {
-        if (f != undefined) {
-          this.show(f);
-        } else {
-          this.visible.set(false);
-        }
-      }
-    });
     store.select(selectUserOnTurn).subscribe({
       next: f => {
         this.userOnTurn.set(f);
@@ -62,13 +50,12 @@ export class GameFieldOptionsComponent {
   removeDisaster() {
   }
 
-  private show(s: SelectedFieldState) {
+  show(s: SelectedFieldState) {
     this.x.set(s.x);
     this.y.set(s.y);
     this.type.set(s.fieldType);
     this.title.set(this.translationService.get(`game.field.title.${FieldType[s.fieldType].toLocaleLowerCase()}`));
     this.putDisasterEnabled.set(s.canPutDisaster);
     this.hasDisaster.set(s.hasDisaster);
-    this.visible.set(true);
   }
 }

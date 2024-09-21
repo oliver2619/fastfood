@@ -21,7 +21,7 @@
 	
 	&[disabled] {
 		cursor: default;
-		opacity: $opacity-disabled;
+		opacity: $opacity-disabled !important;
 	}
 }
 

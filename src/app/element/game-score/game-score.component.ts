@@ -4,10 +4,11 @@ import { Store } from '@ngrx/store';
 import { GamePhase } from '../../model/game-phase';
 import { PlayernamePipe } from '../../pipe/playername.pipe';
 import { selectGamePhase, selectPlayersSorted, selectRemainingScore } from '../../selector/game-selector';
-import { MoneyPipe } from '../money.pipe';
+import { MoneyPipe } from '../../pipe/money.pipe';
 import { TranslateDirective } from '../translate.directive';
 import { FrameComponent } from "../frame/frame.component";
 import { FrameButtonDirective } from '../frame-button.directive';
+import { AnimatedNumberComponent } from '../animated-number/animated-number.component';
 
 interface Element {
   readonly color: string;
@@ -21,7 +22,7 @@ interface Element {
     templateUrl: './game-score.component.html',
     styleUrl: './game-score.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterModule, TranslateDirective, MoneyPipe, PlayernamePipe, FrameComponent, FrameButtonDirective]
+    imports: [RouterModule, TranslateDirective, MoneyPipe, PlayernamePipe, FrameComponent, FrameButtonDirective, AnimatedNumberComponent]
 })
 export class GameScoreComponent {
 

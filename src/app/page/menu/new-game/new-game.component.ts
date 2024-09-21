@@ -5,7 +5,6 @@ import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { gameActionGroup, GameCreatedAction } from '../../../action/game-action-group';
 import { TranslateDirective } from '../../../element/translate.directive';
-import { TranslatePipe } from '../../../element/translate.pipe';
 import { selectNewGameSettings, selectUsername } from '../../../selector/settings-selector';
 import { GameService } from '../../../service/game.service';
 import { InitialMoney } from '../../../state/initial-money';
@@ -14,6 +13,7 @@ import { applicationActionGroup } from '../../../action/application-action-group
 import { TranslateService } from '../../../service/translate/translate.service';
 import { FrameComponent } from "../../../element/frame/frame.component";
 import { FrameButtonDirective } from '../../../element/frame-button.directive';
+import { TranslatePipe } from '../../../pipe/translate.pipe';
 
 interface PlayerInfo {
   readonly color: string;

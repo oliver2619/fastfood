@@ -1,4 +1,5 @@
 $animation-duration-short: 150ms;
+$animation-duration-flip: 150ms;
 
 @keyframes fadein {
     from {
@@ -7,6 +8,36 @@ $animation-duration-short: 150ms;
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes flipin {
+    from {
+        transform: scaleY(0);
+    }
+
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes flipout {
+    from {
+        transform: scaleY(1);
+    }
+
+    to {
+        transform: scaleY(0);
     }
 }
 
@@ -52,13 +83,60 @@ $animation-duration-short: 150ms;
     }
 }
 
-@mixin fadein {
+@mixin fadein($duration) {
     animation-name: fadein;
     animation-direction: normal;
-    animation-duration: 1200ms;
+    animation-duration: $duration;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     animation-timing-function: linear;
+}
+
+@mixin fadeout($duration) {
+    animation-name: fadeout;
+    animation-direction: normal;
+    animation-duration: $duration;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+}
+
+@mixin flipin {
+    animation-name: flipin;
+    animation-direction: normal;
+    animation-duration: $animation-duration-flip;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+
+    &.delay-1 {
+        animation-delay: $animation-duration-flip;
+    }
+
+    &.delay-2 {
+        animation-delay: $animation-duration-flip * 1.5;
+    }
+
+    &.delay-3 {
+        animation-delay: $animation-duration-flip * 2;
+    }
+
+    &.delay-4 {
+        animation-delay: $animation-duration-flip * 2.5;
+    }
+
+    &.delay-5 {
+        animation-delay: $animation-duration-flip * 3;
+    }
+}
+
+@mixin flipout {
+    animation-name: flipout;
+    animation-direction: normal;
+    animation-duration: $animation-duration-flip;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
 }
 
 @mixin popdown {
@@ -77,17 +155,6 @@ $animation-duration-short: 150ms;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
-}
-
-@mixin pulse {
-    animation-name: pulse;
-    animation-direction: normal;
-    animation-duration: 1200ms;
-    animation-iteration-count: infinite;
-}
-
-.popup {
-    @include popup;
 
     &.delay-1 {
         animation-delay: $animation-duration-short;
@@ -108,6 +175,25 @@ $animation-duration-short: 150ms;
     &.delay-5 {
         animation-delay: $animation-duration-short * 3;
     }
+}
+
+@mixin pulse {
+    animation-name: pulse;
+    animation-direction: normal;
+    animation-duration: 1200ms;
+    animation-iteration-count: infinite;
+}
+
+.flipin {
+    @include flipin();
+}
+
+.flipout {
+    @include flipout();
+}
+
+.popup {
+    @include popup;
 }
 
 .pulse {

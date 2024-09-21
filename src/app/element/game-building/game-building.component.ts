@@ -3,29 +3,26 @@ import { Store } from '@ngrx/store';
 import { gameActionGroup } from '../../action/game-action-group';
 import { GamePhase } from '../../model/game-phase';
 import { selectGamePhase, selectPlayerIndexOnTurn, selectPlayerOnTurn, selectUserOnTurn } from '../../selector/game-selector';
-import { selectSelectedBuilding } from '../../selector/selection-selector';
 import { SelectedBuildingState } from '../../state/selection-state';
-import { MoneyPipe } from '../money.pipe';
+import { MoneyPipe } from '../../pipe/money.pipe';
 import { TranslateDirective } from '../translate.directive';
+import { FrameComponent } from "../frame/frame.component";
+import { FrameButtonDirective } from '../frame-button.directive';
+import { AnimatedNumberComponent } from '../animated-number/animated-number.component';
 
 @Component({
   selector: 'ff-game-building',
   standalone: true,
-  imports: [TranslateDirective, MoneyPipe],
   templateUrl: './game-building.component.html',
   styleUrl: './game-building.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.hidden]': '!visible()'
-  }
+  imports: [TranslateDirective, MoneyPipe, FrameComponent, FrameButtonDirective, AnimatedNumberComponent]
 })
 export class GameBuildingComponent {
 
   readonly buyCosts = signal(0);
   readonly sellCosts = signal(0);
   readonly turnover = signal(0);
-
-  readonly visible = signal(false);
 
   private readonly x = signal(0);
   private readonly y = signal(0);
@@ -42,15 +39,6 @@ export class GameBuildingComponent {
   readonly canPut = computed(() => (this.size() == 0 || (this.size() === 1 && this.playerIndexOnTurn() === this.owner())) && (this.phase() === GamePhase.SET_FIRST_BUILDING || this.phase() === GamePhase.SET_SECOND_BUILDING) && this.userOnTurn());
 
   constructor(private readonly store: Store) {
-    store.select(selectSelectedBuilding).subscribe({
-      next: b => {
-        if (b != undefined) {
-          this.show(b);
-        } else {
-          this.visible.set(false);
-        }
-      }
-    });
     store.select(selectGamePhase).subscribe({
       next: p => this.phase.set(p)
     });
@@ -77,7 +65,7 @@ export class GameBuildingComponent {
     this.store.dispatch(gameActionGroup.sellBuilding({ x: this.x(), y: this.y() }));
   }
 
-  private show(state: SelectedBuildingState) {
+  show(state: SelectedBuildingState) {
     this.x.set(state.x);
     this.y.set(state.y);
     this.size.set(state.size);
@@ -85,6 +73,5 @@ export class GameBuildingComponent {
     this.buyCosts.set(state.buyCosts);
     this.sellCosts.set(state.sellCosts);
     this.turnover.set(state.turnoverBonus);
-    this.visible.set(true);
   }
 }

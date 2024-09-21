@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 
 export interface FrameComponentPort {
 

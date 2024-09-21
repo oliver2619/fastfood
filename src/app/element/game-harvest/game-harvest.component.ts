@@ -1,25 +1,24 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { gameActionGroup } from '../../action/game-action-group';
-import { GamePhase } from '../../model/game-phase';
 import { SoilType } from '../../model/soil-type';
-import { selectGamePhase, selectUserSoils } from '../../selector/game-selector';
+import { selectUserSoils } from '../../selector/game-selector';
 import { TranslateDirective } from '../translate.directive';
+import { FrameComponent } from "../frame/frame.component";
 
 @Component({
-  selector: 'ff-game-harvest',
-  standalone: true,
-  imports: [TranslateDirective],
-  templateUrl: './game-harvest.component.html',
-  styleUrl: './game-harvest.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.hidden]': '!visible()'
-  }
+    selector: 'ff-game-harvest',
+    standalone: true,
+    templateUrl: './game-harvest.component.html',
+    styleUrl: './game-harvest.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [TranslateDirective, FrameComponent]
 })
 export class GameHarvestComponent {
 
-  readonly visible = signal(false);
+  @ViewChild(FrameComponent)
+  frame: FrameComponent | undefined;
+
   readonly farm = signal(0);
   readonly field = signal(0);
   readonly plantation = signal(0);
@@ -51,9 +50,6 @@ export class GameHarvestComponent {
         this.plantation.set(s.harvests.plantation);
       }
     });
-    store.select(selectGamePhase).subscribe({
-      next: phase => this.visible.set(phase === GamePhase.HARVEST)
-    });
   }
 
   harvestSteak() {
@@ -78,5 +74,9 @@ export class GameHarvestComponent {
 
   harvestCoffee() {
     this.store.dispatch(gameActionGroup.harvest({ soilType: SoilType.COFFEE }));
+  }
+
+  fadeout(): Promise<void> {
+    return this.frame?.close() ?? Promise.resolve();
   }
 }

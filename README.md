@@ -7,13 +7,8 @@ Round based game about fastfood
 * ai
     * harvest best ai
     * place disaster best ai
-
-* dynamic components & animations
-    * building options
-    * field options
-    * harvest
-    * sell
-* refactor pipes
-* Style animations
 * Help
 * PWA
+
+## Nice to have
+* dialog backpane fadeout
