@@ -35,9 +35,10 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'settings', reducer: settingsReducer }),
     provideEffects(applicationEffects, settingsEffects, gameEffects),
     { provide: APP_INITIALIZER, useFactory: initApp, deps: [Store], multi: true },
-    { provide: ErrorHandler, useFactory: fastfoodErrorHandler, deps: [Store] }, provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          })
+    { provide: ErrorHandler, useFactory: fastfoodErrorHandler, deps: [Store] }, 
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWithDelay:50000'
+    })
   ]
 };
