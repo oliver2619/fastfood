@@ -1,4 +1,4 @@
-import { ApplicationConfig, APP_INITIALIZER, ErrorHandler, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, APP_INITIALIZER, ErrorHandler, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter, withHashLocation } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -14,6 +14,7 @@ import { messagesReducer } from './reducer/messages-reducer';
 import { gameReducer } from './reducer/game-reducer';
 import { gameSetupReducer } from './reducer/game-setup-reducer';
 import { selectionReducer } from './reducer/selection-reducer';
+import { provideServiceWorker } from '@angular/service-worker';
 
 function initApp(store: Store): () => Promise<void> {
   return () => {
@@ -34,6 +35,9 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'settings', reducer: settingsReducer }),
     provideEffects(applicationEffects, settingsEffects, gameEffects),
     { provide: APP_INITIALIZER, useFactory: initApp, deps: [Store], multi: true },
-    { provide: ErrorHandler, useFactory: fastfoodErrorHandler, deps: [Store] }
+    { provide: ErrorHandler, useFactory: fastfoodErrorHandler, deps: [Store] }, provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          })
   ]
 };

@@ -8,7 +8,6 @@ Round based game about fastfood
     * harvest best ai
     * place disaster best ai
 * Help
-* PWA
 
 ## Nice to have
 * dialog backpane fadeout

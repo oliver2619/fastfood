@@ -20,7 +20,7 @@ export class GameOverlayPlayerTurnComponent {
   private readonly gamePhaseBuild = signal(false);
   private readonly userOnTurn = signal(false);
 
-  readonly colorOnTurn = signal('');
+  readonly colorOnTurn = signal('red');
   readonly flipIn = signal(true);
   readonly hasUnplacedBuilding = signal(true);
   readonly hasDisaster = signal(false);
